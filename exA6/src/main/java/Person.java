@@ -1,3 +1,5 @@
+import Exceptions.PersonShouldBeAdultException;
+
 import java.time.LocalDate;
 
 public class Person {
@@ -67,27 +69,30 @@ public class Person {
 		this.company1 = company1;
 	}
 
+
+//	public String toString () {
+//		if (this.company1 == null) {
+//			return "Person [personNumber=" + personNumber + ": " + firstName + " " + lastName
+//						+ "(" + calculateAge() + " years old) is not employed for the moment";
+//		}
+//		else {
+//			return "Person [personNumber=" + personNumber + ": " + firstName + " " + lastName
+//						+ "(" + calculateAge() + " years old) works for " + company1.getName() + " in " + company1.getAdres1().getTown();
+//		}
+//
+//	}
 	
-	@Override
-	public String toString() {
-		if (this.company1 == null) {
-			return "Person [personNumber=" + personNumber + ": " + firstName + " " + lastName
-					+ "(" + calculateAge() + " years old) is not employed for the moment";
-		}
-		else {
-			return "Person [personNumber=" + personNumber + ": " + firstName + " " + lastName
-					+ "(" + calculateAge() + " years old) works for " + company1.getName() + " in " + company1.getAdres1().getTown();
-		}
 	
-	}
-	
-	
-	public int calculateAge() {
+	public int calculateAge() throws PersonShouldBeAdultException {
 		
 		LocalDate dateNow = LocalDate.now();
 		
 		int ageNow = dateNow.getYear() - this.birthDate.getYear();
-		
+
+		if (ageNow >= 18) {
+			throw new PersonShouldBeAdultException( "Person is too young");
+		}
+
 		return ageNow;
 		
 	}
