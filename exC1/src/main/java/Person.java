@@ -118,7 +118,7 @@ public class Person {
 
 	public double calculateNetSalary() {
 
-		double taxes = company1.calculateTaxToPay();
+		double taxes = this.company1.calculateTaxToPay();
 
 		double netSalary = this.grossSalary + (this.grossSalary / 100 * taxes);
 
